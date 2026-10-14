@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="460" viewBox="0 0 880 460" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b93a7"/>
+    </marker>
+    <style>
+      .box { fill:#f6f8fb; stroke:#c4cbd6; stroke-width:1.5; rx:12 }
+      .title { font-size:14px; font-weight:700; fill:#1c2430 }
+      .sub { font-size:11.5px; fill:#5b6577 }
+      .stage { font-size:12px; font-weight:700; fill:#ffffff }
+      .lane { font-size:11px; fill:#8b93a7; letter-spacing:2px }
+    </style>
+  </defs>
+
+  <rect width="880" height="460" fill="#ffffff"/>
+
+  <text x="440" y="30" text-anchor="middle" font-size="20" font-weight="800" fill="#1c2430">CI/CD Pipeline — Build · Test · Gate · Deploy</text>
+  <text x="440" y="52" text-anchor="middle" font-size="12" fill="#8b93a7">GitHub Actions → OIDC → Staging → Blue/Green or Canary to Production</text>
+
+  <!-- source -->
+  <rect class="box" x="30" y="90" width="130" height="80"/>
+  <text class="title" x="95" y="122" text-anchor="middle">Git push</text>
+  <text class="sub" x="95" y="142" text-anchor="middle">main / PR</text>
+
+  <!-- stages -->
+  <g>
+    <rect x="200" y="90" width="130" height="80" fill="#2088ff" rx="12"/>
+    <text class="stage" x="265" y="122" text-anchor="middle">1 · BUILD</text>
+    <text x="265" y="142" text-anchor="middle" font-size="11.5" fill="#e6f0ff">docker build</text>
+    <text x="265" y="158" text-anchor="middle" font-size="11.5" fill="#e6f0ff">SBOM + cache</text>
+  </g>
+  <g>
+    <rect x="370" y="90" width="130" height="80" fill="#6e56cf" rx="12"/>
+    <text class="stage" x="435" y="122" text-anchor="middle">2 · TEST</text>
+    <text x="435" y="142" text-anchor="middle" font-size="11.5" fill="#efeaff">unit · integ ·</text>
+    <text x="435" y="158" text-anchor="middle" font-size="11.5" fill="#efeaff">contract (matrix)</text>
+  </g>
+  <g>
+    <rect x="540" y="90" width="130" height="80" fill="#d97706" rx="12"/>
+    <text class="stage" x="605" y="122" text-anchor="middle">3 · GATE</text>
+    <text x="605" y="142" text-anchor="middle" font-size="11.5" fill="#fff4e0">SAST · CVE scan</text>
+    <text x="605" y="158" text-anchor="middle" font-size="11.5" fill="#fff4e0">OPA policy</text>
+  </g>
+  <g>
+    <rect x="710" y="90" width="130" height="80" fill="#16a34a" rx="12"/>
+    <text class="stage" x="775" y="122" text-anchor="middle">4 · DEPLOY</text>
+    <text x="775" y="142" text-anchor="middle" font-size="11.5" fill="#e4f7e9">staging → prod</text>
+    <text x="775" y="158" text-anchor="middle" font-size="11.5" fill="#e4f7e9">blue/green</text>
+  </g>
+
+  <line x1="160" y1="130" x2="196" y2="130" stroke="#8b93a7" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="330" y1="130" x2="366" y2="130" stroke="#8b93a7" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="500" y1="130" x2="536" y2="130" stroke="#8b93a7" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="670" y1="130" x2="706" y2="130" stroke="#8b93a7" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- OIDC note -->
+  <rect class="box" x="200" y="200" width="300" height="64"/>
+  <text class="title" x="350" y="224" text-anchor="middle">OIDC trust</text>
+  <text class="sub" x="350" y="244" text-anchor="middle">short-lived cloud creds — no stored keys</text>
+
+  <!-- environments -->
+  <text class="lane" x="40" y="300">ENVIRONMENTS</text>
+  <rect class="box" x="30" y="315" width="240" height="90"/>
+  <text class="title" x="150" y="340" text-anchor="middle">staging</text>
+  <text class="sub" x="150" y="360" text-anchor="middle">smoke tests + preview URL</text>
+  <text class="sub" x="150" y="378" text-anchor="middle">auto-promote on green</text>
+
+  <rect class="box" x="310" y="315" width="240" height="90"/>
+  <text class="title" x="430" y="340" text-anchor="middle">production</text>
+  <text class="sub" x="430" y="360" text-anchor="middle">blue/green or canary</text>
+  <text class="sub" x="430" y="378" text-anchor="middle">rollback on SLO breach</text>
+
+  <rect class="box" x="590" y="315" width="260" height="90"/>
+  <text class="title" x="720" y="340" text-anchor="middle">observability</text>
+  <text class="sub" x="720" y="360" text-anchor="middle">metrics · logs · traces</text>
+  <text class="sub" x="720" y="378" text-anchor="middle">alerts → auto-rollback</text>
+
+  <line x1="775" y1="170" x2="775" y2="310" stroke="#8b93a7" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="350" y1="170" x2="500" y2="260" stroke="#8b93a7" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+  <line x1="640" y1="150" x2="640" y2="310" stroke="#8b93a7" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+
+  <text x="440" y="440" text-anchor="middle" font-size="11" fill="#8b93a7">Fail fast in the gate — never at 3 AM in production.</text>
+</svg>
